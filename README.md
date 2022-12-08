@@ -24,6 +24,7 @@ THEN the current day is displayed at the top of the calendar
 <!--Done-->
 WHEN I scroll down
 THEN I am presented with timeblocks for standard business hours
+<!--Done-->
 WHEN I view the timeblocks for that day
 THEN each timeblock is color coded to indicate whether it is in the past, present, or future
 WHEN I click into a timeblock
