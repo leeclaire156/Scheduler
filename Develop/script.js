@@ -1,33 +1,16 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-//note: id attributes are formatted as id="hour-#" for each div block
 $(function () {
-  // TODO: Add a listener for click events on the save button. DONE
-  // TODO: This code should use the id in the containing time-block as a key to save the user input in local storage.
-  // HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
 
-
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-
+  //This is a click event function that allows the user to save their events when they click the save button.
   $(".saveBtn").click(function (e) {
     e.preventDefault();
-    //TODO: have the events match with id as a key, using "this"
     //This function takes the value of the description sibling of this (the one the user clicked) "saveBtn"/save button class
     var userInput = $(this).siblings(".description").val();
-    // console.log(userInput);
     //This function takes the value of the hour sibling of this (the one the user clicked) "saveBtn"/save button class
     var thisHour = $(this).siblings(".hour").text();
-    //The two variable will be stored in local storage by setting the key (x,y) items with x being the stringified value of thisHour and y being the stringified value of the description sibling.
+    //The two variable will be stored in local storage by setting the key (x,y) items with x being thisHour and y being the stringified value of the description sibling.
     localStorage.setItem(thisHour, JSON.stringify(userInput));
+    //Do not stringify the keyname (in this case, thisHour)! When you try getItem it won't be the same as a stringified "9AM".
+    //ex: JSON.stringify(9AM) = "9AM" but JSON.parse(localStorage.getItem("9AM")) = 9AM, therefore you can't access the item because it doesn't exist.
   });
 
   //Each hour's text box will display what was stored even after refreshing
@@ -79,8 +62,8 @@ $(function () {
       }
     }
   }
-  colorBlocking();
 
+  colorBlocking();
 
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
