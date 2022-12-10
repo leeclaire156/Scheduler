@@ -1,4 +1,23 @@
 $(function () {
+  // TODO: Add code to display the current date in the header of the page.
+  var today = dayjs();
+  $("#currentDay").text(today.format("dddd, MMMM DD, YYYY"));
+
+  //This is a click event function that allows the user to clear all of their events when they click this button.
+  $(".clearBtn").click(function (e) {
+    e.preventDefault();
+    localStorage.clear();
+    $("#hour-9 .description").val(JSON.parse(localStorage.getItem("9AM")));
+    $("#hour-10 .description").val(JSON.parse(localStorage.getItem("10AM")));
+    $("#hour-11 .description").val(JSON.parse(localStorage.getItem("11AM")));
+    $("#hour-12 .description").val(JSON.parse(localStorage.getItem("12PM")));
+    $("#hour-13 .description").val(JSON.parse(localStorage.getItem("1PM")));
+    $("#hour-14 .description").val(JSON.parse(localStorage.getItem("2PM")));
+    $("#hour-15 .description").val(JSON.parse(localStorage.getItem("3PM")));
+    $("#hour-16 .description").val(JSON.parse(localStorage.getItem("4PM")));
+    $("#hour-17 .description").val(JSON.parse(localStorage.getItem("5PM")));
+  })
+
 
   //This is a click event function that allows the user to save their events when they click the save button.
   $(".saveBtn").click(function (e) {
@@ -64,8 +83,4 @@ $(function () {
   }
 
   colorBlocking();
-
-  // TODO: Add code to display the current date in the header of the page.
-  var today = dayjs();
-  $("#currentDay").text(today.format("dddd, MMMM DD, YYYY"));
 });
