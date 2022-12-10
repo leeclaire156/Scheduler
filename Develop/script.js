@@ -31,11 +31,47 @@ $(function () {
   });
 
 
-  // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour. 
-  // HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes?
-  //How can Day.js be used to get the current hour in 24-hour time?
-  //
- 
+
+  //Capital H denotes the usage of the 24 hour clock system providing 2 digits for the hours (09, 10, 11, 12, 13, etc)
+  //parseInt converts the primitive data type into a number, making currentHour return the time as a number
+  var currentHour = parseInt(dayjs().format("HH"));
+
+  var ninthHour = $("#hour-9");
+  var tenthHour = $("#hour-10");
+  var eleventhHour = $("#hour-11");
+  var twelfthHour = $("#hour-12");
+  var firstHour = $("#hour-13");
+  var secondHour = $("#hour-14");
+  var thirdHour = $("#hour-15");
+  var fourthHour = $("#hour-16");
+  var fifthHour = $("#hour-17");
+
+  var hourArray = [ninthHour, tenthHour, eleventhHour, twelfthHour, firstHour, secondHour, thirdHour, fourthHour, fifthHour];
+
+  function colorBlocking() {
+    //Loops through each hour in the array
+    for (var i = 0; i < hourArray.length; i++) {
+      //clears all existing tags
+      $(hourArray[i]).removeClass("present past future");
+
+      //hourArray[i].attr("id")] selects the current id from the hourArray that is being looped through, split("hour-") splits the hour from the "hour-#" id name and returns an object where the hour number was located in index 1.
+      //parseInt converts the primitive data type into a number
+      //Therefore hourArray[i].attr("id").split("hour-")[1] returns the hour as a number from the current ID that the loop is moving through
+      var checkingHour = parseInt(hourArray[i].attr("id").split("hour-")[1]);
+
+      if (checkingHour < currentHour) {
+        $(hourArray[i]).addClass("past");
+      } else if (checkingHour === currentHour) {
+        $(hourArray[i]).addClass("present");
+      } else {
+        $(hourArray[i]).addClass("future");
+      }
+    }
+  }
+  colorBlocking();
+
+
+  // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
   $("#currentDay").text(today.format("dddd, MMMM DD, YYYY"));
 });
