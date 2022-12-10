@@ -17,21 +17,25 @@ $(function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  var event = document.querySelector(".description");
+
   $(".saveBtn").click(function (e) {
     e.preventDefault();
-    var saveEvent = event.value;
-    //TODO: have the events match with id as a key, using"this"?
-    // console.log(this);
-    localStorage.setItem("Event", JSON.stringify(saveEvent));
+    //TODO: have the events match with id as a key, using "this"
+    //This function takes the value of the description sibling of this (the one the user clicked) "saveBtn"/save button class
+    var userInput = $(this).siblings(".description").val();
+    // console.log(userInput);
+    //This function takes the value of the hour sibling of this (the one the user clicked) "saveBtn"/save button class
+    var thisHour = $(this).siblings(".hour").text();
+    //The two variable will be stored in local storage by setting the key (x,y) items with x being the stringified value of thisHour and y being the stringified value of the description sibling.
+    localStorage.setItem(JSON.stringify(thisHour), JSON.stringify(userInput));
   });
+
 
   // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour. 
   // HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes?
   //How can Day.js be used to get the current hour in 24-hour time?
   //
-
-  // TODO: Add code to display the current date in the header of the page.
+ 
   var today = dayjs();
   $("#currentDay").text(today.format("dddd, MMMM DD, YYYY"));
 });
