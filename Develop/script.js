@@ -27,8 +27,19 @@ $(function () {
     //This function takes the value of the hour sibling of this (the one the user clicked) "saveBtn"/save button class
     var thisHour = $(this).siblings(".hour").text();
     //The two variable will be stored in local storage by setting the key (x,y) items with x being the stringified value of thisHour and y being the stringified value of the description sibling.
-    localStorage.setItem(JSON.stringify(thisHour), JSON.stringify(userInput));
+    localStorage.setItem(thisHour, JSON.stringify(userInput));
   });
+
+  //Each hour's text box will display what was stored even after refreshing
+  $("#hour-9 .description").val(JSON.parse(localStorage.getItem("9AM")));
+  $("#hour-10 .description").val(JSON.parse(localStorage.getItem("10AM")));
+  $("#hour-11 .description").val(JSON.parse(localStorage.getItem("11AM")));
+  $("#hour-12 .description").val(JSON.parse(localStorage.getItem("12PM")));
+  $("#hour-13 .description").val(JSON.parse(localStorage.getItem("1PM")));
+  $("#hour-14 .description").val(JSON.parse(localStorage.getItem("2PM")));
+  $("#hour-15 .description").val(JSON.parse(localStorage.getItem("3PM")));
+  $("#hour-16 .description").val(JSON.parse(localStorage.getItem("4PM")));
+  $("#hour-17 .description").val(JSON.parse(localStorage.getItem("5PM")));
 
 
 
